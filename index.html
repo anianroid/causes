@@ -1100,46 +1100,6 @@
 
 	
 	<script type="text/javascript">
-		firebase.database().ref('causes/' + 0).set(
-			{
-		    title: 'Vardhana',
-		    subtitle: 'Education Sponsorship',
-		    description: 'Empowering as many bright, dedicated and underprivileged children to complete their education, at any stage of their academic career (from school to post graduation) as possible. Allowing them to realize their true potential unafected by their personal financial situation at any step of their journey.',
-		    preview_img : 'imageUrl',
-		    raised_amount: 100,
-		    required_amount: 1800000
-		  }
-	  );
-	  firebase.database().ref('causes/' + 1).set(
-			{
-		    title: 'Bastar',
-		    subtitle: 'Rural Health Project',
-		    description: 'To provide diagnostic infrastructure and healthcare services through medical camps in remote and disconnected tribal villages of Bastar, Chattisgarh. The primary focus also includes overall improvement in health conditions, prevention of diseases, reduction in mortality rate, collection of health-related data and spreading awareness about hygiene and healthy practices among tribals.',
-		    preview_img : 'imageUrl',
-		    raised_amount: 100,
-		    required_amount: 1800000
-		  }
-	  );
-	  firebase.database().ref('causes/' + 2).set(
-			{
-		    title: 'ROMF',
-		    subtitle: 'Documentary Funds',
-		    description: '‘Rest Of My Family’ is a social-work-through-art initiative. Through the very design of our project, we aim to propagate a philosophy and a responsible way of looking at social issues through works of art. The aim is to use conventional and experimental modes of expression/art-forms- mix-media, multimedia art forms, documentary films, photo stories in order to bring about an engaging and long lasting social movement and transformation.',
-		    preview_img : 'imageUrl',
-		    raised_amount: 100,
-		    required_amount: 1800000
-		  }
-	  );
-	  firebase.database().ref('causes/' + 3).set(
-			{
-		    title: 'Dhanushkodi',
-		    subtitle: 'Community bus',
-		    description: 'To provide a community bus to the ghost town of Dhanushkodi, TN. Dhanushkodi has no public infrastructure present.There are no schools, hospitals, post office, police station or any other public services functioning in the area. The nearest hospital is almost 13 km away, most of the kids are enrolled in schools in Rameshwaram and all 236 families residing there have to travel to Rameshwaram to get basic supplies. With funds from Kara Foundation we have managed to provide the fishing community of Dhanushkodi with a community bus that has connected the settlement.',
-		    preview_img : 'imageUrl',
-		    raised_amount: 100,
-		    required_amount: 1800000
-		  }
-	  );
 		var causesRef = firebase.database().ref('causes');
 		causesRef.on('value', function(snapshot) {
 		  var causes = snapshot.val();
