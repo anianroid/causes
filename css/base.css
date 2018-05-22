@@ -263,3 +263,8 @@ h6 { font-size: 14px; line-height: 20px;font-weight:600;}
     padding-left: 4em;
     padding-right: 4em;
 }
+
+
+.expander {
+	cursor: pointer;
+}
