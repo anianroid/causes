@@ -458,9 +458,10 @@
 				$('.expander').on('click', function(e){
 					e.preventDefault();
 					e.stopPropagation();
-					var url = $(this).attr('href');
+					var url = '../project.html';
 
-					var id = parseInt(url.split('.html')[0].match(/\d+/)[0]);
+					var id = $(this).attr('data-id');
+					console.log(id);
 
 					loader.slideUp(function(){
 						$.get(url, function(data){
@@ -485,8 +486,6 @@
 							causes[id].content.variable.map( (item, index) => {
 								switch(item.type) {
 
-
-
 									case 'text': 
 										var textArray = item.text.split(/\n/);
 										var textContent = '';
@@ -494,7 +493,7 @@
 											textContent += `<li class="causestext">${cell}</li>`;
 										});
 										content = `
-										<div class="${item.width == 'half' ? 'six columns caseexp1' : 'twelve columns caseexp1'}">
+										<div class="${item.width}">
 											<h3 class="causeshead">${item.heading}</h3>
 											<ul class="causestext">
 												${textContent}
@@ -507,12 +506,14 @@
 
 
 									case 'image': 
-										content = `
-										<div class"${item.width == 'half' ? 'six columns caseexp1' : 'twelve columns caseexp1'}">
+										item.image 
+										? content = `
+										<div class"${item.width}">
 											<img class="img-responsive" src="${item.image}" style="max-width: 400px;">
 											<h5>${item.caption}</h5>
 										</div>
-										`;
+										`
+										: content = ``;
 										$("#render-variable-content").append(content);
 										break;
 
@@ -520,7 +521,7 @@
 
 									case 'highlight': 
 										content = `
-										<div class="${item.width == 'half' ? 'six columns caseexp1' : 'twelve columns caseexp1'}">
+										<div class="${item.width}">
 											<h5>${item.text}</h5>
 										</div>
 										`;
@@ -531,11 +532,11 @@
 
 									case 'video': 
 										content = `
-										<div class="six columns">
+										<div class="${item.width}">
                         <h4>${item.title}</h4>
                         <p>${ite.description}</p>
                         <figure class="vimeo">
-                        <a href="${item.video}"><img alt="image" src="images/causes/3/admin-fund-main.jpg"></a>
+                        <a href="${item.video}"><img alt="${item.title}" src="images/causes/3/admin-fund-main.jpg"></a>
                         </figure>
                     </div>
 										`;
@@ -546,7 +547,7 @@
 
 									case 'sectionHeading': 
 										content = `
-										<div class="${item.width == 'half' ? 'six columns caseexp1' : 'twelve columns caseexp1'}">
+										<div class="${item.width}">
 											<h2>${item.heading}</h2>
 										</div>
 										`;
