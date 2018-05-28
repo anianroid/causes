@@ -448,167 +448,167 @@
 	
 	 // Portfolio Ajax
 	 
-			$(window).load(function() {
-				'use strict';		  
-				var loader = $('.expander-wrap');
-				if(typeof loader.html() == 'undefined'){
-					$('<div class="expander-wrap"><div id="expander-wrap" class="container clearfix relative"><p class="cls-btn"><a class="close">X</a></p><div/></div></div>').css({opacity:0}).hide().insertAfter('.portfolio');
-					loader = $('.expander-wrap');
-				}
-				$('.expander').on('click', function(e){
-					e.preventDefault();
-					e.stopPropagation();
-					var url = '../project.html';
+			// $(window).load(function() {
+			// 	'use strict';		  
+			// 	var loader = $('.expander-wrap');
+			// 	if(typeof loader.html() == 'undefined'){
+			// 		$('<div class="expander-wrap"><div id="expander-wrap" class="container clearfix relative"><p class="cls-btn"><a class="close">X</a></p><div/></div></div>').css({opacity:0}).hide().insertAfter('.portfolio');
+			// 		loader = $('.expander-wrap');
+			// 	}
+			// 	$('.expander').on('click', function(e){
+			// 		e.preventDefault();
+			// 		e.stopPropagation();
+			// 		var url = '../project.html';
 
-					var id = $(this).attr('data-id');
-					console.log(id);
+			// 		var id = $(this).attr('data-id');
+			// 		console.log(id);
 
-					loader.slideUp(function(){
-						$.get(url, function(data){
-							var portfolioContainer = $('.portfolio');
-							var topPosition = portfolioContainer.offset().top;
-							var bottomPosition = topPosition + portfolioContainer.height();
-							$('html,body').delay(600).animate({ scrollTop: bottomPosition - 70}, 800);
-							var container = $('#expander-wrap>div', loader);
+			// 		loader.slideUp(function(){
+			// 			$.get(url, function(data){
+			// 				var portfolioContainer = $('.portfolio');
+			// 				var topPosition = portfolioContainer.offset().top;
+			// 				var bottomPosition = topPosition + portfolioContainer.height();
+			// 				$('html,body').delay(600).animate({ scrollTop: bottomPosition - 70}, 800);
+			// 				var container = $('#expander-wrap>div', loader);
 							
-							container.html(data);
+			// 				container.html(data);
 
 
-							// Bind data from database \\
+			// 				// Bind data from database \\
 
-							$("#render-variable-content").html('');
+			// 				$("#render-variable-content").html('');
 
-							$("#causeTitle").html(causes[id.toString()].title);
-							$("#causeDescription").html(causes[id.toString()].description);
-							$("#causeAim").html(causes[id.toString()].content.default.aim);
-							$("#main-video").html(causes[id.toString()].content.default.videoLink);
-							var content;
-							causes[id].content.variable.map( (item, index) => {
-								switch(item.type) {
+			// 				$("#causeTitle").html(causes[id.toString()].title);
+			// 				$("#causeDescription").html(causes[id.toString()].description);
+			// 				$("#causeAim").html(causes[id.toString()].content.default.aim);
+			// 				$("#main-video").html(causes[id.toString()].content.default.videoLink);
+			// 				var content;
+			// 				causes[id].content.variable.map( (item, index) => {
+			// 					switch(item.type) {
 
-									case 'text': 
-										var textArray = item.text.split(/\n/);
-										var textContent = '';
-										textArray.map((cell) => {
-											textContent += `<li class="causestext">${cell}</li>`;
-										});
-										content = `
-										<div class="${item.width}">
-											<h3 class="causeshead">${item.heading}</h3>
-											<ul class="causestext">
-												${textContent}
-											</ul>
-										</div>
-										`;
-										$("#render-variable-content").append(content);
-										break;
-
-
-
-									case 'image': 
-										item.image 
-										? content = `
-										<div class"${item.width}">
-											<img class="img-responsive" src="${item.image}" style="max-width: 400px;">
-											<h5>${item.caption}</h5>
-										</div>
-										`
-										: content = ``;
-										$("#render-variable-content").append(content);
-										break;
+			// 						case 'text': 
+			// 							var textArray = item.text.split(/\n/);
+			// 							var textContent = '';
+			// 							textArray.map((cell) => {
+			// 								textContent += `<li class="causestext">${cell}</li>`;
+			// 							});
+			// 							content = `
+			// 							<div class="${item.width}">
+			// 								<h3 class="causeshead">${item.heading}</h3>
+			// 								<ul class="causestext">
+			// 									${textContent}
+			// 								</ul>
+			// 							</div>
+			// 							`;
+			// 							$("#render-variable-content").append(content);
+			// 							break;
 
 
 
-									case 'highlight': 
-										content = `
-										<div class="${item.width}">
-											<h5>${item.text}</h5>
-										</div>
-										`;
-										$("#render-variable-content").append(content);
-										break;
+			// 						case 'image': 
+			// 							item.image 
+			// 							? content = `
+			// 							<div class"${item.width}">
+			// 								<img class="img-responsive" src="${item.image}" style="max-width: 400px;">
+			// 								<h5>${item.caption}</h5>
+			// 							</div>
+			// 							`
+			// 							: content = ``;
+			// 							$("#render-variable-content").append(content);
+			// 							break;
 
 
 
-									case 'video': 
-										content = `
-										<div class="${item.width}">
-                        <h4>${item.title}</h4>
-                        <p>${ite.description}</p>
-                        <figure class="vimeo">
-                        <a href="${item.video}"><img alt="${item.title}" src="images/causes/3/admin-fund-main.jpg"></a>
-                        </figure>
-                    </div>
-										`;
-										$("#render-variable-content").append(content);
-										break;
+			// 						case 'highlight': 
+			// 							content = `
+			// 							<div class="${item.width}">
+			// 								<h5>${item.text}</h5>
+			// 							</div>
+			// 							`;
+			// 							$("#render-variable-content").append(content);
+			// 							break;
 
 
 
-									case 'sectionHeading': 
-										content = `
-										<div class="${item.width}">
-											<h2>${item.heading}</h2>
-										</div>
-										`;
-										$("#render-variable-content").append(content);
-										break;
+			// 						case 'video': 
+			// 							content = `
+			// 							<div class="${item.width}">
+   //                      <h4>${item.title}</h4>
+   //                      <p>${ite.description}</p>
+   //                      <figure class="vimeo">
+   //                      <a href="${item.video}"><img alt="${item.title}" src="images/causes/3/admin-fund-main.jpg"></a>
+   //                      </figure>
+   //                  </div>
+			// 							`;
+			// 							$("#render-variable-content").append(content);
+			// 							break;
+
+
+
+			// 						case 'sectionHeading': 
+			// 							content = `
+			// 							<div class="${item.width}">
+			// 								<h2>${item.heading}</h2>
+			// 							</div>
+			// 							`;
+			// 							$("#render-variable-content").append(content);
+			// 							break;
 									
-								}
-							});
+			// 					}
+			// 				});
 
 
 
 
 
 
-							$("#owl-portfolio-slider").owlCarousel({
+			// 				$("#owl-portfolio-slider").owlCarousel({
 								  
-								pagination:true,
-								slideSpeed : 300,
-								autoPlay : 5000,
-								singleItem:true							
+			// 					pagination:true,
+			// 					slideSpeed : 300,
+			// 					autoPlay : 5000,
+			// 					singleItem:true							
 							 
-							});
+			// 				});
 							
-							$(".container").fitVids();
+			// 				$(".container").fitVids();
 							
-							$('.vimeo a,.youtube a').click(function (e) {
-								e.preventDefault();
-								var videoLink = $(this).attr('href');
-								var classeV = $(this).parent();
-								var PlaceV = $(this).parent();
-								if ($(this).parent().hasClass('youtube')) {
-									$(this).parent().wrapAll('<div class="video-wrapper">');
-									$(PlaceV).html('<iframe frameborder="0" height="333" src="' + videoLink + '?autoplay=1&showinfo=0" title="YouTube video player" width="547"></iframe>');
-								} else {
-									$(this).parent().wrapAll('<div class="video-wrapper">');
-									$(PlaceV).html('<iframe src="' + videoLink + '?title=0&amp;byline=0&amp;portrait=0&amp;autoplay=1&amp;color=ac2283" width="500" height="281" frameborder="0"></iframe>');
-								}
-							});	
+			// 				$('.vimeo a,.youtube a').click(function (e) {
+			// 					e.preventDefault();
+			// 					var videoLink = $(this).attr('href');
+			// 					var classeV = $(this).parent();
+			// 					var PlaceV = $(this).parent();
+			// 					if ($(this).parent().hasClass('youtube')) {
+			// 						$(this).parent().wrapAll('<div class="video-wrapper">');
+			// 						$(PlaceV).html('<iframe frameborder="0" height="333" src="' + videoLink + '?autoplay=1&showinfo=0" title="YouTube video player" width="547"></iframe>');
+			// 					} else {
+			// 						$(this).parent().wrapAll('<div class="video-wrapper">');
+			// 						$(PlaceV).html('<iframe src="' + videoLink + '?title=0&amp;byline=0&amp;portrait=0&amp;autoplay=1&amp;color=ac2283" width="500" height="281" frameborder="0"></iframe>');
+			// 					}
+			// 				});	
 							
-							loader.slideDown(function(){
-								if(typeof keepVideoRatio == 'function'){
-									keepVideoRatio('.container > iframe');
-								}
-							}).delay(1000).animate({opacity:1}, 200);
-						});
-					});
-				});
+			// 				loader.slideDown(function(){
+			// 					if(typeof keepVideoRatio == 'function'){
+			// 						keepVideoRatio('.container > iframe');
+			// 					}
+			// 				}).delay(1000).animate({opacity:1}, 200);
+			// 			});
+			// 		});
+			// 	});
 				
-				$('.close', loader).on('click', function(){
-					loader.delay(300).slideUp(function(){
-						var container = $('#expander-wrap>div', loader);
-						container.html('');
-						$(this).css({opacity:0});
+			// 	$('.close', loader).on('click', function(){
+			// 		loader.delay(300).slideUp(function(){
+			// 			var container = $('#expander-wrap>div', loader);
+			// 			container.html('');
+			// 			$(this).css({opacity:0});
 						
-					});
-					var portfolioContainer = $('.portfolio');
-						var topPosition = portfolioContainer.offset().top;
-						$('html,body').delay(0).animate({ scrollTop: topPosition - 70}, 500);
-				});
+			// 		});
+			// 		var portfolioContainer = $('.portfolio');
+			// 			var topPosition = portfolioContainer.offset().top;
+			// 			$('html,body').delay(0).animate({ scrollTop: topPosition - 70}, 500);
+			// 	});
 
-			});		
+			// });		
 	
   })(jQuery); 
  
