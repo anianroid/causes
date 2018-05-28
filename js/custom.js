@@ -608,56 +608,6 @@
 				});
 
 			});		
-
-
-			// Initialize Firebase
-		  var config = {
-		    apiKey: "AIzaSyDKrua4o9vHmWTWwp4bQW8bfkvrAYtp2U4",
-		    authDomain: "rest-of-my-family.firebaseapp.com",
-		    databaseURL: "https://rest-of-my-family.firebaseio.com",
-		    projectId: "rest-of-my-family",
-		    storageBucket: "rest-of-my-family.appspot.com",
-		    messagingSenderId: "742286657143"
-		  };
-		  var causes;
-		  firebase.initializeApp(config);
-
-			var causesRef = firebase.database().ref('causes');
-			causesRef.on('value', function(snapshot) {
-			  causes = snapshot.val();
-			  causes.map((cause, index) => {
-			  	$("#causes-highlights").append(`
-			  		<div class="clear"></div>
-						<div class="portfolio"></div>
-						<div class="expander-wrap relative">
-							<div id="expander-wrap">
-								<p class="cls-btn"><a class="close"></a></p>
-								<div class="expander-inner"></div>
-							</div>
-						</div>
-						<div class="clear"></div>
-						<div class="five columns ${index%2===0 ? '' : 'float-right'}">
-							<div class="work-wrap"><img alt="Some image" data-scroll-reveal="enter bottom move 150px over 1s after 0.1s" src="images/causes/1/vardhana%20870x250%201.jpg"> <img alt="Some image" data-scroll-reveal="enter bottom move 150px over 1s after 0.3s" src="images/causes/1/vardhana%20870x250%202.jpg"> <img alt="Some image" data-scroll-reveal="enter bottom move 150px over 1s after 0.5s" src="images/causes/1/vardhana%20870x250%203.jpg"></div>
-						</div>
-						<div class="seven columns ${index%2===0 ? '' : 'float-right'}" data-scroll-reveal="enter right move 150px over 1s after 1.6s" id="vardhana">
-							<div class="${index%2===0 ? 'translate-left' : 'translate-right'}">
-								<div class="description-title-text left">
-									<p>${cause.title}. <span>${cause.subtitle}</span></p>
-									<p>&nbsp;<small>(₹ ${cause.raisedAmount} / ₹ ${cause.requiredAmount})</small></p>
-								</div>
-								<div class="des-programs-author left">
-									<p>${cause.description}</p>
-									<a class="expander tipped" data-tipper-options='{"direction":"top","follow":"true"}' data-title="details" href="project1.html">
-										<div class="link">
-											Know More
-										</div>
-									</a>
-								</div>
-							</div>
-						</div>
-			  	`);
-			  })
-			});
 	
   })(jQuery); 
  
